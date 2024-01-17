@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.3.2-dist/bootstrap-5.3.2-dist/css/bootstrap.css">
+</head>
+
+<body class="bg-info">
+    <style>
+        .add:hover {
+            background-color: rgb(144, 23, 23);
+            color: white;
+            font-weight: bold;
+            border: none;
+            font-variant-emoji: emoji;
+        }
+
+        body {
+            overflow: hidden;
+            box-shadow: burlywood;
+
+        }
+    ::placeholder{
+        text-align: center;
+        font-size: large;
+    }
+        center {
+            border: 2px solid rgb(50, 50, 146);
+            border-radius: 30px;
+            margin: 150px 350px;
+            padding: 50px 0px;
+        }
+
+        @media screen and (max-width: 895px) {
+            center {
+                margin-right: 5px;
+                margin-left: 20px;
+                width: 300px;
+            }
+        }
+    </style>
+    <div class="container-fluid mt-5 col-lg-7 my-3 p-5 col-10 shadow-lg mx-auto">
+        <h1 class="my-4 text-dark text-center text-decoration-underline">Mini Mart</h1>
+        <input type="text" class="form-control outline-none shadow-none" placeholder="Enter your item" id="enter">
+        <button onclick="add()" class="add btn btn-dark col-12 mt-3">Submit</button>
+        <div id="show" class="table table-ordered"></div>
+        <div id="disp"></div>
+        <div class="container-fluid shadow-sm mt-2 col-12 text-center">
+            <Button class="btn btn-primary" onclick="start()">Add to start</Button>
+            <Button class="btn btn-danger" onclick="deleteFirst()">Delete first</Button>
+            <Button class="btn btn-dark" onclick="deleteLast()">Delete last</Button>
+            <Button class="btn btn-dark" onclick="editAny()">Edit any</Button>
+            <Button class="btn btn-warning" onclick="deleteAll()">Delete all</Button>
+        </div>
+    </div>
+    </body>
+    <script>
+        var allItems = [];
+        function add() {
+            var item = document.getElementById("enter").value
+            // console.log(allItems);
+            if (item == "") {
+                console.log("Fill in the Blank space");
+                show.innerHTML = `<p class ="alert alert-danger">Blank cannot be empty</p>`
+            } else {
+                enter.value = ""
+                show.innerHTML = ""
+                allItems.push(item)
+                //console.log(allItems);
+                displayTodos();
+                
+            }
+        }
+        function displayTodos() {
+            5
+            disp.innerHTML = ""
+            for (i = 0; i < allItems.length; i++) {
+                console.log(allItems);
+                var element = allItems[i]
+                disp.innerHTML += `<h3>${i + 1}.&nbsp${element}</h3>`
+            }
+        }
+        
+        function start() {
+            var newTodo = prompt("Fill in the empty space")
+            console.log(newTodo);
+            allItems.unshift(newTodo)
+            displayTodos()
+        }
+        function deleteLast() {
+            allItems.pop()
+            displayTodos()
+        }
+        function deleteFirst() {
+            allItems.shift()
+            displayTodos()
+
+        }
+        function deleteAll(index) {
+            // allItems = []
+            var allItemss = confirm("are you sure")
+            if(allItemss = true){
+                allItems.splice (index,1)
+                displayTodos()
+            }}
+
+
+
+        function deleteAny() {
+            show.innerHTML = ''
+            for (i = 0; i < cart.length; i++){
+                var element = cart[i]
+                show.innerHTML +=`
+                <p>${i + 1} ${element}</p>'
+                <button class='btn btn-danger btn-sm' onclick="del(${i})">Delete</buton>
+                <button class='btn btn-danger btn-sm'>Delete</buton>`
+            }
+        }
+        function editAny() {
+            var userInput = Number(prompt("Enter a number to edit"));
+            var userEdit = prompt("Enter new item");
+            allItems[userInput - 1] = userEdit
+            displayTodos()
+        }
+
+        
+
+
+
+        
+    </script>
+</body>
+
+</html>
